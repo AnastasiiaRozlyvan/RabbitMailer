@@ -1,1 +1,1 @@
-# RabbitMailer-
+# RabbitMailer
