@@ -1,6 +1,7 @@
 import pika
 import json
 
+
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
