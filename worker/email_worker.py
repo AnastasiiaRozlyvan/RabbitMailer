@@ -6,6 +6,8 @@ import os
 from dotenv import load_dotenv
 
 
+load_dotenv()
+
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
 EMAIL_USER = os.getenv("EMAIL_USER")
@@ -18,7 +20,6 @@ def send_email(to, subject, body):
     msg['From'] = 'your_email@gmail.com'
     msg['To'] = to
 
-    
     with smtplib.SMTP(EMAIL_HOST, EMAIL_PORT) as server:
         server.starttls()
         server.login(EMAIL_USER, EMAIL_PASSWORD)
