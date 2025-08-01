@@ -2,6 +2,16 @@ import pika
 import json
 import smtplib
 from email.mime.text import MIMEText
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 
 def send_email(to, subject, body):
@@ -10,9 +20,9 @@ def send_email(to, subject, body):
     msg['From'] = 'your_email@gmail.com'
     msg['To'] = to
 
-    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+    with smtplib.SMTP(EMAIL_HOST, EMAIL_PORT) as server:
         server.starttls()
-        server.login('your_email@gmail.com', 'your_app_password')
+        server.login(EMAIL_USER, EMAIL_PASSWORD)
         server.send_message(msg)
         print(f" [x] Sent email to {to}")
 
